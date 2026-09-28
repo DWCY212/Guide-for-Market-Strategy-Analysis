@@ -28,8 +28,10 @@ jobs:
 
           root = Path('plugins/market-strategy-guidance')
           manifest = json.loads((root / '.codex-plugin/plugin.json').read_text(encoding='utf-8'))
+          portable = json.loads((root / 'plugin.json').read_text(encoding='utf-8'))
           assert manifest['name'] == 'market-strategy-guidance'
-          assert manifest['version'] == '0.1.0'
+          assert portable['name'] == manifest['name']
+          assert portable['version'] == manifest['version']
           assert manifest['skills'] == './skills/'
           skill = root / 'skills/market-strategy-guidance/SKILL.md'
           text = skill.read_text(encoding='utf-8')
