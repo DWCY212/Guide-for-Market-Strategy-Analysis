@@ -1,6 +1,7 @@
 # Local extraction and temporary files
 reference_extraction/
 extract_docs.py
+rendered_medical_care/
 *.tmp
 *.log
 

@@ -1,28 +1,29 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "market-strategy-guidance",
-  "version": "0.3.0",
-  "description": "为市场战略研究提供框架选择、证据分层和现有分析不足审查，支持慢病、公共卫生智能流调、DSTE、采购与市场空间专项检查。",
+  "version": "0.4.0",
+  "description": "为市场战略研究提供框架选择、证据分层和现有分析不足审查，支持慢病、医养结合、公共卫生智能流调、DSTE、采购与市场空间专项检查。",
   "author": {
     "name": "DWCY212"
   },
   "homepage": "https://github.com/DWCY212/Guide-for-Market-Strategy-Analysis",
   "repository": "https://github.com/DWCY212/Guide-for-Market-Strategy-Analysis",
   "license": "MIT",
-  "keywords": ["market strategy", "market intelligence", "public health", "epidemiology", "DSTE", "TAM SAM SOM", "research review"],
+  "keywords": ["market strategy", "market intelligence", "public health", "integrated medical and elderly care", "epidemiology", "DSTE", "TAM SAM SOM", "research review"],
   "extensions": {
     "com.openai": {
       "interface": {
         "displayName": "市场战略分析指导",
         "shortDescription": "搭建市场战略分析框架并审查研究不足。",
-        "longDescription": "帮助研究者明确决策问题、定义市场边界、组织证据、选择合适框架，并审查市场战略分析中的证据、客户、采购、竞争、市场空间、产品边界和落地风险。支持慢病、公共卫生智能流调和 DSTE 专项检查。插件提供指导与审查，不代写完整市场战略报告。",
+        "longDescription": "帮助研究者明确决策问题、定义市场边界、组织证据、选择合适框架，并审查市场战略分析中的证据、客户、采购、竞争、市场空间、产品边界和落地风险。支持慢病、医养结合、公共卫生智能流调和 DSTE 专项检查。插件提供指导与审查，不代写完整市场战略报告。",
         "developerName": "DWCY212",
         "category": "Research",
         "capabilities": ["Read"],
         "defaultPrompt": [
           "请为我的市场战略研究搭建最小可用分析框架，并说明每一部分需要什么证据。",
           "请审查这份市场分析，列出关键不足、影响、待补证据和优先级。",
-          "请审查这份公共卫生智能流调市场分析，检查采购证据、调查闭环、产品边界和跨区域复制条件。"
+          "请审查这份公共卫生智能流调市场分析，检查采购证据、调查闭环、产品边界和跨区域复制条件。",
+          "请审查这份医养结合市场分析，区分服务支付市场与医侧系统采购市场，并检查三条采购路径、产品边界、验收和交付经济性。"
         ],
         "brandColor": "#1F6FEB"
       }
