@@ -1,0 +1,18 @@
+# Local extraction and temporary files
+reference_extraction/
+extract_docs.py
+*.tmp
+*.log
+
+# Python caches
+__pycache__/
+*.py[cod]
+
+# Codex and editor state
+.codex/
+.agents/plugins/cache/
+.vscode/
+.idea/
+
+# Windows lock files
+~$*

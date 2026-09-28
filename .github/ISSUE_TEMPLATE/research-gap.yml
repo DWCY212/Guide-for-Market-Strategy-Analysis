@@ -1,0 +1,27 @@
+name: 市场分析缺口
+description: 记录一个需要补证或复查的市场战略分析问题
+title: "[研究缺口] "
+labels:
+  - research-gap
+body:
+  - type: textarea
+    id: decision
+    attributes:
+      label: 受影响的决策
+      description: 哪个进入、客群、价格或产品边界判断受到影响？
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: 当前证据与限制
+      description: 提供来源、时间、口径，并区分事实、判断、假设和待核验内容。
+    validations:
+      required: true
+  - type: textarea
+    id: next_step
+    attributes:
+      label: 建议补证路径
+      description: 说明要查什么、完成标准是什么、优先级如何。
+    validations:
+      required: true
