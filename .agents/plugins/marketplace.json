@@ -1,14 +1,16 @@
 {
-  "name": "personal",
+  "name": "guide-for-market-strategy-analysis",
   "interface": {
-    "displayName": "Personal"
+    "displayName": "Guide for Market Strategy Analysis"
   },
   "plugins": [
     {
       "name": "market-strategy-guidance",
       "source": {
-        "source": "local",
-        "path": "./plugins/market-strategy-guidance"
+        "source": "git-subdir",
+        "url": "https://github.com/DWCY212/Guide-for-Market-Strategy-Analysis.git",
+        "path": "./plugins/market-strategy-guidance",
+        "ref": "main"
       },
       "policy": {
         "installation": "AVAILABLE",

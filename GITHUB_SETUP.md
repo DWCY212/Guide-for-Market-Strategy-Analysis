@@ -16,10 +16,11 @@ git remote add origin https://github.com/<OWNER>/<REPOSITORY>.git
 git push -u origin main
 ```
 
-在 Codex 中从 GitHub marketplace 添加时，可使用：
+在 Codex 中从 GitHub marketplace 安装时，依次使用：
 
 ```text
 codex plugin marketplace add https://github.com/<OWNER>/<REPOSITORY>.git --sparse .agents/plugins
+codex plugin add market-strategy-guidance@guide-for-market-strategy-analysis
 ```
 
 发布前请替换 `plugin.json` 中的作者、仓库、网站、隐私政策和服务条款信息，并检查 GitHub Actions 通过。
