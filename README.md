@@ -1,6 +1,6 @@
 # 市场战略分析指导插件
 
-这是一个面向 GPT-6 Astra 工作流的 skills-only 插件，当前版本为 `0.4.0`，用于：
+这是一个面向 GPT-6 Astra 工作流的 skills-only 插件，当前版本为 `0.5.0`，用于：
 
 - 把模糊的市场问题拆成可决策的研究问题；
 - 选择最小充分的市场战略分析框架；
@@ -10,6 +10,7 @@
 - 对县域医共体慢病管理与城市二三级医院慢病管理进行双市场拆分审查，并检查模块级产品责任矩阵。
 - 对公共卫生智能流调的采购证据、调查闭环、疾控平台协同、部署经济性和跨区域复制进行专项审查。
 - 对医养结合区分服务支付市场与医侧系统采购市场，拆分 G 端监管、B 端长护险定点机构和基层家庭病床三条采购路径，并检查医侧产品边界、采购验收、价格拆分、交付经济性和复制条件。
+- 对医疗高质量数据集区分数据集核心交付、平台治理、模型/应用、课题和邻近专病库，检查任务级数据生产闭环、质量验收、数据合规、项目金额去重、交付经济性和复购复制证据。
 
 插件的默认目标是“指导和审查”，不是重新生成一份完整的市场战略分析报告。用户提供的慢病数智化管理、医养结合、医疗高质量数据集、公共卫生智能流调和转会诊 DSTE 报告仅用于提炼框架与审查维度。
 
@@ -23,6 +24,7 @@ plugins/market-strategy-guidance/
 └── assets/
     ├── chronic-disease-review-checklist.md
     ├── eldercare-integration-review-checklist.md
+    ├── medical-dataset-review-checklist.md
     ├── public-health-review-checklist.md
     ├── reference-framework.md
     └── source-inventory.md

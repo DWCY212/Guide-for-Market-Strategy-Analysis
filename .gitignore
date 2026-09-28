@@ -2,6 +2,7 @@
 reference_extraction/
 extract_docs.py
 rendered_medical_care/
+rendered_dataset/
 *.tmp
 *.log
 
