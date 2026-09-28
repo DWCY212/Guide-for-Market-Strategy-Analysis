@@ -35,6 +35,12 @@ python C:/Users/<user>/.codex/skills/.system/plugin-creator/scripts/validate_plu
 
 `.agents/plugins/marketplace.json` 已将插件登记为 `personal` marketplace 的可用插件。重启 Codex 桌面端后，在 Plugins 中刷新并安装“市场战略分析指导”。安装后需要新建会话，技能才会加载。
 
+从 GitHub marketplace 添加本插件：
+
+```text
+codex plugin marketplace add https://github.com/DWCY212/Guide-for-Market-Strategy-Analysis.git --sparse .agents/plugins
+```
+
 若要从 GitHub marketplace 分发，可将 `.agents/plugins/marketplace.json` 提交到仓库，并让 `source` 使用 `git-subdir` 指向 `plugins/market-strategy-guidance`；发布前应把 `plugin.json` 中的作者、仓库、隐私政策和服务条款替换为真实信息。
 
 ## 参考资料边界
