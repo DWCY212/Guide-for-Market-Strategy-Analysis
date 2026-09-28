@@ -1,16 +1,18 @@
 {
   "name": "market-strategy-guidance",
-  "version": "0.1.0",
-  "description": "为市场战略研究提供框架选择、证据分层和现有分析不足审查。",
+  "version": "0.2.0",
+  "description": "为市场战略研究提供框架选择、证据分层和现有分析不足审查，支持慢病、DSTE、采购与市场空间专项检查。",
   "author": {
-    "name": "Local developer"
+    "name": "DWCY212"
   },
+  "homepage": "https://github.com/DWCY212/Guide-for-Market-Strategy-Analysis",
+  "repository": "https://github.com/DWCY212/Guide-for-Market-Strategy-Analysis",
   "skills": "./skills/",
   "interface": {
     "displayName": "市场战略分析指导",
     "shortDescription": "搭建市场战略分析框架并审查研究不足。",
     "longDescription": "帮助研究者明确决策问题、定义市场边界、组织证据、选择合适框架，并审查市场战略分析中的证据、客户、采购、竞争、市场空间、产品边界和落地风险。插件提供指导与审查，不代写完整市场战略报告。",
-    "developerName": "Local developer",
+    "developerName": "DWCY212",
     "category": "Research",
     "capabilities": [],
     "defaultPrompt": "请为我的市场战略研究搭建最小可用分析框架，并审查现有分析的不足。"
