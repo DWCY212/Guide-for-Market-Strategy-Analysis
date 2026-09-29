@@ -1,7 +1,7 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "market-strategy-guidance",
-  "version": "0.6.0",
+  "version": "0.6.1",
   "description": "为市场战略研究提供框架选择、证据分层、项目成立性审查和联网补证，支持慢病、医养结合、医疗高质量数据集、公共卫生智能流调、DSTE、采购与市场空间专项检查。",
   "author": {
     "name": "DWCY212"
