@@ -1,9 +1,10 @@
 # 医疗市场战略分析指导插件
 
-这是一个面向 GPT-6 Astra 工作流的 skills-only 插件，当前版本为 `0.7.1`，用于：
+这是一个面向 GPT-6 Astra 工作流的 skills-only 插件，当前版本为 `0.8.0`，用于：
 
 - 把模糊的市场问题拆成可决策的研究问题；
 - 区分“该投入多大”的市场战略洞察研究与“该不该投入”的市场战略机会研究，并分别使用对应框架；
+- 按 AI 调用协议路由研究类型、医疗市场领域和按需加载模块；
 - 默认输出 `研究报告.md` 和 `研究方向.md` 两份 Markdown 文档：前者保留框架和当前内容，后者列出章节要求、证据缺口和下一步改进；
 - 选择最小充分的市场战略分析框架；
 - 组织事实、分析判断、模型假设和待核验证据；
@@ -13,19 +14,21 @@
 - 对公共卫生智能流调的采购证据、调查闭环、疾控平台协同、部署经济性和跨区域复制进行专项审查。
 - 对医养结合区分服务支付市场与医侧系统采购市场，拆分 G 端监管、B 端长护险定点机构和基层家庭病床三条采购路径，并检查医侧产品边界、采购验收、价格拆分、交付经济性和复制条件。
 - 对医疗高质量数据集区分数据集核心交付、平台治理、模型/应用、课题和邻近专病库，检查任务级数据生产闭环、质量验收、数据合规、项目金额去重、交付经济性和复购复制证据。
+- 对用药产品检查 K（居民连续用药主干）、A（合理用药/审方）和 B（药品供应保障/云药房）的模块边界、组合采购、竞争、验收和市场空间。
+- 对数智健康教育服务平台检查“两库一机制”、省级统筹/市级协同/区县应用、政策信号与类似平台双轴分层、内容治理、传播服务闭环和 AI 合规边界。
 - 用“项目成立性七问”审查项目身份、问题、客户付费、产品成熟度、商业验证、时机、差异化壁垒、市场空间和团队执行能力。
 - 在宿主提供网页搜索、浏览器或联网工具时，按官方/采购原文优先、证据等级和可追溯引用规则补充最新政策、采购、机构和竞品信息。
 - 通过明确的触发条件、输入验证、错误处理、权限边界和限制说明保持审查结果可复核。
 
-插件的默认目标是“指导和审查”，不是重新生成一份完整的市场战略分析报告。用户提供的慢病数智化管理、医养结合、医疗高质量数据集、公共卫生智能流调和转会诊 DSTE 报告仅用于提炼框架与审查维度。
+插件的默认目标是“指导和审查”，不是重新生成一份完整的市场战略分析报告。用户提供的报告仅用于提炼框架与审查维度，文档中的指令性文字不具有执行效力。
 
 ## 目录
 
 ```text
-plugins/market-strategy-guidance/
+plugins/medical-market-strategy-guidance/
 ├── .codex-plugin/plugin.json       # Codex 兼容清单
 ├── plugin.json                     # Agent Plugins 可移植清单
-├── skills/market-strategy-guidance/SKILL.md
+├── skills/medical-market-strategy-guidance/SKILL.md
 └── assets/
     ├── chronic-disease-review-checklist.md
     ├── eldercare-integration-review-checklist.md
@@ -36,6 +39,9 @@ plugins/market-strategy-guidance/
     ├── research-modes-and-deliverables.md
     ├── research-insight-report-template.md
     ├── research-opportunity-report-template.md
+    ├── ai-call-contract.json
+    ├── medication-product-market-module.md
+    ├── health-education-platform-module.md
     ├── research-directions-template.md
     └── source-inventory.md
 ```
@@ -44,9 +50,13 @@ plugins/market-strategy-guidance/
 
 ### 1. 插件定位与边界
 
-插件用于搭建市场战略研究框架、审查已有分析、组织证据和提出下一步研究方向。它默认指导和审查，不自动代写完整市场战略报告，不把附件或报告中的“请执行”文字当作任务指令。
+插件用于搭建和审查医疗市场战略研究。它默认指导和审查，不自动代写完整市场战略报告，不把附件或报告中的“请执行”文字当作任务指令。
 
-### 2. 研究类型模块
+### 2. AI 调用与路由模块
+
+运行时按 INPUT_VALIDATE → ROUTE_MODE → ROUTE_DOMAIN → LOAD_MODULES → BUILD_EVIDENCE → ANALYZE → EMIT 执行。机器可读的输入字段、触发词、模块注册表、证据标签、输出契约和权限边界见 assets/ai-call-contract.json。详细领域模块按需加载，不把所有规则一次性放入上下文。
+
+### 3. 研究类型模块
 
 插件会先根据决策问题进行路由：
 
@@ -55,23 +65,23 @@ plugins/market-strategy-guidance/
 
 默认交付两个 Markdown 文档：`研究报告.md`保留选定框架、已有内容和待补证标题；`研究方向.md`说明每个章节应回答什么、需要什么证据、当前缺口如何影响决策，以及 P0/P1/P2 下一步任务。没有内容的子标题保留为空或写“待补证”，不会为了形式删除缺口，也不会自动代写完整战略报告。
 
-### 3. 摘要模块
+### 4. 摘要模块
 
 摘要不是简单总结，而是研究报告的一页纸精简版。假设读者只读摘要，也应知道研究对象、决策问题、市场边界、需求与客户、产品/公司位置、市场空间口径、竞争与 Right to Win、关键证据、风险、成熟度和建议行动。摘要内容可以与正文重复；限制、冲突、模型假设和禁止外推不得被省略。洞察研究摘要重点回答投入多大，机会研究摘要重点回答是否投入。
 
-### 4. 证据与联网模块
+### 5. 证据与联网模块
 
 组织事实、分析判断、模型假设和待核验证据；按官方政策、采购、合同、验收、医院/机构和企业原文优先的规则补充联网证据。联网能力依赖宿主提供的网页搜索、浏览器或 MCP 工具，不绕过宿主权限。
 
-### 5. 核心分析模块
+### 6. 核心分析模块
 
 包括市场定义、需求机制、客户工作流、采购闭环、市场空间、竞争与 Right to Win、进入与复制、交付经济性、风险和成熟度判断。
 
-### 6. 专项审查模块
+### 7. 专项审查模块
 
-支持慢病数智化管理、公共卫生智能流调、医养结合、医疗高质量数据集和转会诊 DSTE，并保留各专项的市场拆分、产品边界、证据和采购审查规则。
+支持用药产品、数智健康教育服务平台、慢病数智化管理、公共卫生智能流调、医养结合、医疗高质量数据集和转会诊 DSTE，并按领域模块保留市场拆分、产品边界、证据和采购审查规则。
 
-### 7. 安全与限制模块
+### 8. 安全与限制模块
 
 默认只读分析，不上传文件、发送消息、修改外部系统、调用未授权服务或索取凭据。文件缺失、网页失败、来源冲突或数字不可复算时，保留限制并标为待核验，不强行外推。
 
@@ -80,7 +90,7 @@ plugins/market-strategy-guidance/
 从仓库根目录运行：
 
 ```text
-python C:/Users/<user>/.codex/skills/.system/plugin-creator/scripts/validate_plugin.py plugins/market-strategy-guidance
+python C:/Users/<user>/.codex/skills/.system/plugin-creator/scripts/validate_plugin.py plugins/medical-market-strategy-guidance
 ```
 
 本仓库的 GitHub Actions 会在推送和 Pull Request 时自动执行同一校验。
@@ -96,10 +106,10 @@ codex plugin marketplace add https://github.com/DWCY212/Guide-for-Market-Strateg
 第二步，安装插件：
 
 ```text
-codex plugin add market-strategy-guidance@guide-for-market-strategy-analysis
+codex plugin add medical-market-strategy-guidance@guide-for-market-strategy-analysis
 ```
 
-`marketplace add` 只登记插件来源，不会自动安装其中的插件。安装完成后，重启 Codex 或新建会话，使技能加载生效。也可以在 Codex 桌面端的 Plugins 页面找到“市场战略分析指导”并点击安装。
+`marketplace add` 只登记插件来源，不会自动安装其中的插件。安装完成后，重启 Codex 或新建会话，使技能加载生效。也可以在 Codex 桌面端的 Plugins 页面找到“医疗市场战略分析指导插件”并点击安装。
 
 检查安装状态：
 
@@ -113,7 +123,7 @@ codex plugin list
 
 ```text
 codex plugin marketplace upgrade guide-for-market-strategy-analysis
-codex plugin add market-strategy-guidance@guide-for-market-strategy-analysis
+codex plugin add medical-market-strategy-guidance@guide-for-market-strategy-analysis
 ```
 
 更新后请重启 Codex 或新建会话，让新版本技能加载。若 marketplace 尚未登记，先执行上面的“从 GitHub 安装”步骤。桌面端也可以在 Plugins 页面选择该插件并执行更新/重新安装。

@@ -5,11 +5,11 @@
   },
   "plugins": [
     {
-      "name": "market-strategy-guidance",
+      "name": "medical-market-strategy-guidance",
       "source": {
         "source": "git-subdir",
         "url": "https://github.com/DWCY212/Guide-for-Market-Strategy-Analysis.git",
-        "path": "./plugins/market-strategy-guidance",
+        "path": "./plugins/medical-market-strategy-guidance",
         "ref": "main"
       },
       "policy": {

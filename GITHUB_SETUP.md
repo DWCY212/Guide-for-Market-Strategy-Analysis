@@ -20,7 +20,7 @@ git push -u origin main
 
 ```text
 codex plugin marketplace add https://github.com/<OWNER>/<REPOSITORY>.git --sparse .agents/plugins
-codex plugin add market-strategy-guidance@guide-for-market-strategy-analysis
+codex plugin add medical-market-strategy-guidance@guide-for-market-strategy-analysis
 ```
 
 发布前请替换 `plugin.json` 中的作者、仓库、网站、隐私政策和服务条款信息，并检查 GitHub Actions 通过。

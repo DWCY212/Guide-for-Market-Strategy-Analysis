@@ -1,0 +1,43 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "medical-market-strategy-guidance",
+  "version": "0.8.0",
+  "description": "医疗市场战略分析指导插件：按 AI 调用协议路由市场战略洞察研究与机会研究，支持用药产品、数智健康教育服务平台及其他医疗市场专项审查。",
+  "author": {
+    "name": "DWCY212"
+  },
+  "homepage": "https://github.com/DWCY212/Guide-for-Market-Strategy-Analysis",
+  "repository": "https://github.com/DWCY212/Guide-for-Market-Strategy-Analysis",
+  "license": "MIT",
+  "keywords": [
+    "market strategy",
+    "market intelligence",
+    "medical high-quality datasets",
+    "public health",
+    "integrated medical and elderly care",
+    "epidemiology",
+    "DSTE",
+    "TAM SAM SOM",
+    "research review"
+  ],
+  "extensions": {
+    "com.openai": {
+      "interface": {
+        "displayName": "医疗市场战略分析指导插件",
+        "shortDescription": "按 AI 调用协议搭建和审查医疗市场战略研究。",
+        "longDescription": "按结构化路由选择市场战略洞察研究或市场战略机会研究，按需加载医疗市场领域模块，并默认输出研究报告和研究方向两份 Markdown 文档；摘要按一页纸决策版组织，在宿主提供联网工具时补充政策、采购和竞品证据。支持用药产品、数智健康教育服务平台、慢病、医养结合、医疗高质量数据集、公共卫生智能流调和 DSTE 专项检查。插件提供指导与审查，不代写完整市场战略报告。",
+        "developerName": "DWCY212",
+        "category": "Research",
+        "capabilities": [
+          "Read"
+        ],
+        "defaultPrompt": [
+          "请按 AI 调用协议路由这项医疗市场战略研究，并输出研究报告和研究方向两份 Markdown 文档。",
+          "请审查这份用药产品或健康教育平台材料，区分事实、判断、假设和待核验项。",
+          "请在可用时联网核验政策、采购和竞品证据，并标注来源、日期、地域和证据等级。"
+        ],
+        "brandColor": "#1F6FEB"
+      }
+    }
+  }
+}

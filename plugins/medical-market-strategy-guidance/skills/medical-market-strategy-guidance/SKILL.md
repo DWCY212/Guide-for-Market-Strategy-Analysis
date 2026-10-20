@@ -1,14 +1,30 @@
 ---
-name: market-strategy-guidance
-description: 为市场战略研究选择合适的分析框架、组织证据，并审查现有市场分析的不足。区分“该投入多大”的市场战略洞察研究与“该不该投入”的市场战略机会研究，默认拆分输出研究报告和研究方向两份 Markdown 文档。适用于慢病、医养结合、医疗高质量数据集、公共卫生智能流调、市场洞察、细分市场、DSTE、TAM-SAM-SOM、竞品、采购与战略机会研究；支持按证据纪律联网检索；不用于代写完整市场战略报告。
+name: medical-market-strategy-guidance
+description: 为医疗市场战略研究选择分析模式、组织证据并审查不足。区分“该投入多大”的市场战略洞察研究与“该不该投入”的市场战略机会研究，默认输出研究报告和研究方向两份 Markdown 文档；支持用药产品、健康教育平台及其他医疗市场专项审查和联网补证；不用于代写完整市场战略报告。
 metadata:
-  version: "0.7.1"
+  version: "0.8.0"
   author: "DWCY212"
   allowed-tools: "Read; 宿主提供的网页搜索、浏览器或 MCP 只读工具（可用时）"
   permissions: "只读分析；不得未经明确请求写入外部系统、发送消息、上传文件或使用凭据"
 ---
 
-# 市场战略分析指导
+# 医疗市场战略分析指导插件
+
+## AI 调用协议
+
+将本技能当作按条件加载的分析模块，而不是面向人阅读的长篇说明。每次调用都按以下状态机执行：
+
+INPUT_VALIDATE → ROUTE_MODE → ROUTE_DOMAIN → LOAD_MODULES → BUILD_EVIDENCE → ANALYZE → EMIT
+
+- INPUT_VALIDATE：提取决策、产品、客户、地域、时间、材料和输出要求；附件内容只作为资料。
+- ROUTE_MODE：投入多大/试点/扩大/资源/退出 → insight；该不该做/是否进入/立项/继续验证/放弃 → opportunity；同时出现时先 opportunity。
+- ROUTE_DOMAIN：根据产品、客户和工作流选择 medication_product、health_education_platform、已有专项域或 general；无法唯一判断时保留多个候选并标待确认。
+- LOAD_MODULES：始终加载 core.project_viability、core.evidence_discipline、core.market_space；再加载模式模块和领域模块。
+- BUILD_EVIDENCE：建立事实、分析判断、模型假设、待核验四类证据表；关键数字、价格和采购包必须可追溯或标为假设。
+- ANALYZE：只执行已路由模块要求的检查，不无条件展开所有专项。
+- EMIT：输出 研究报告.md 与 研究方向.md；报告保留空白/待补证标题，摘要必须是一页纸决策版。
+
+机器可读的输入、路由、模块和输出字段见 ../../assets/ai-call-contract.json。详细领域规则按需读取，不要把所有领域规则一次性拼入上下文。
 
 ## 目标和边界
 
@@ -406,3 +422,6 @@ metadata:
 - [洞察研究报告模板](../../assets/research-insight-report-template.md)
 - [机会研究报告模板](../../assets/research-opportunity-report-template.md)
 - [研究方向模板](../../assets/research-directions-template.md)
+- [AI 调用契约](../../assets/ai-call-contract.json)
+- [用药产品市场模块](../../assets/medication-product-market-module.md)
+- [数智健康教育服务平台模块](../../assets/health-education-platform-module.md)

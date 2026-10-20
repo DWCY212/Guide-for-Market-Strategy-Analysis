@@ -1,4 +1,4 @@
-name: Validate market strategy guidance plugin
+name: Validate medical market strategy guidance plugin
 
 on:
   push:
@@ -26,19 +26,19 @@ jobs:
           from pathlib import Path
           import yaml
 
-          root = Path('plugins/market-strategy-guidance')
+          root = Path('plugins/medical-market-strategy-guidance')
           manifest = json.loads((root / '.codex-plugin/plugin.json').read_text(encoding='utf-8'))
           portable = json.loads((root / 'plugin.json').read_text(encoding='utf-8'))
-          assert manifest['name'] == 'market-strategy-guidance'
+          assert manifest['name'] == 'medical-market-strategy-guidance'
           assert portable['name'] == manifest['name']
           assert portable['version'] == manifest['version']
           assert manifest['skills'] == './skills/'
-          skill = root / 'skills/market-strategy-guidance/SKILL.md'
+          skill = root / 'skills/medical-market-strategy-guidance/SKILL.md'
           text = skill.read_text(encoding='utf-8')
           assert text.startswith('---\n')
           end = text.find('\n---', 4)
           frontmatter = yaml.safe_load(text[4:end])
-          assert frontmatter['name'] == 'market-strategy-guidance'
+          assert frontmatter['name'] == 'medical-market-strategy-guidance'
           assert frontmatter['description']
           assert '[TODO:' not in text
           print('Plugin validation passed')
